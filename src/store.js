@@ -3,8 +3,8 @@
 import { writable } from "svelte/store";
 
 export const album = writable({
-  id: "6",
+  id: "TESTSONG1234",
   title: "Maha Ganapathim",
   artist: "Kavalam",
-  price: 101,
+  year: "2022",
 });

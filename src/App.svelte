@@ -16,7 +16,7 @@
         id: $album.id,
         title: $album.title,
         artist: $album.artist,
-        price: $album.price,
+        year: $album.year,
       }),
     });
     const data = await res.json();
@@ -25,9 +25,6 @@
     } else {
       throw new Error(data);
     }
-    // $result = JSON.stringify(data);
-    // console.log($result.length);
-    // return data;
   }
 
   //   GET Function
@@ -68,18 +65,12 @@
     if (id === "get") {
       console.log("GET");
       promise = doGet();
-      ar_prom = promise;
     } else if (id === "post") {
       console.log("POST");
       promise = doPost();
-      console.log(promise);
     } else if (id === "getId") {
       console.log("GET ID");
       promise = doGetId();
-      promise.then((value) => {
-        console.log("Value:", value);
-        ar_prom = [].concat(value);
-      });
     }
   }
 </script>
@@ -96,8 +87,8 @@
   <label for="artist">Artist Name</label>
   <input type="text" id="artist" name="artist" bind:value={$album.artist} />
   <br />
-  <label for="price">Album Price</label>
-  <input type="number" id="price" name="price" bind:value={$album.price} />
+  <label for="year">Release Year</label>
+  <input type="text" id="year" name="year" bind:value={$album.year} />
   <br />
 </form>
 
@@ -111,21 +102,21 @@
   {#await promise}
     <p>Loading...</p>
   {:then records}
-    <div>
+    <div id="table">
       <h2>Result:</h2>
       <table>
         <tr>
           <th>ID</th>
           <th>Title</th>
           <th>Artist</th>
-          <th>Price</th>
+          <th>Year</th>
         </tr>
         {#each records as record, i}
           <tr>
             <td>{record.id}</td>
             <td>{record.title}</td>
             <td>{record.artist}</td>
-            <td>{record.price}</td>
+            <td>{record.year}</td>
           </tr>
         {/each}
       </table>
@@ -143,11 +134,12 @@
   }
   label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin: 0 2%;
   }
   input {
     display: block;
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0.5rem;
+    border-radius: 8px;
   }
   div {
     display: flex;
@@ -159,9 +151,13 @@
     width: 100%;
   }
 
+  #table {
+    margin: 1.5rem 1.5rem;
+  }
+
   td,
   th {
-    border: 1px solid #ddd;
+    border: 1.2px solid #ddd;
     padding: 8px;
   }
 
@@ -171,6 +167,12 @@
 
   tr:hover {
     background-color: #ddd;
+    border-color: #f2f2f2;
+  }
+
+  td:hover {
+    cursor: text;
+    border-color: #f2f2f2;
   }
 
   th {
