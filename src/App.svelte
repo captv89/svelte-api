@@ -10,7 +10,7 @@
 
   // POST Function
   async function doPost() {
-    const res = await fetch("http://localhost:8080/albums", {
+    const res = await fetch("https://whispering-hollows-56519.herokuapp.com/albums", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@
 
   //   GET Function
   async function doGet() {
-    const res = await fetch("http://localhost:8080/albums", {
+    const res = await fetch("https://whispering-hollows-56519.herokuapp.com/albums", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@
   // GET ID Function
   async function doGetId(id) {
     console.log(id);
-    const res = await fetch("http://localhost:8080/albums/" + id, {
+    const res = await fetch("https://whispering-hollows-56519.herokuapp.com/albums/" + id, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
